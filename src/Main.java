@@ -16,37 +16,28 @@ public class Main {
 class Solution {
     public String[] solution(String[] record) {
         String[] answer = {}; // 정답
-        String[] findId={};
-        String[] uid={};
-        for(int i=0; i<record.length; i++) {
-            findId=record[i].split(" ");
-            //findId[0]== enter,change, leave
-            //findId[1]==*userid*
-            //findId[2]==nickname
-            for(int j=0; j<uid.length; j++) {//findId로 찾은 id를 uid 목록에 추가함.
-                if (uid[j]!=null && findId[1]!=uid[j]){
-
-                }else if(uid[j]==null){
-                    uid[j]=findId[1];
-                    User user=new User(findId[1],findId[2]);//name, nickname
-                }
-            }
+        String[][] result=new String[record.length][];
+        for(int i=0; i<record.length; i++){
+            result[i]=record[i].split(" ");
         }
         return answer;
     }
 }
  class User{
-    String name;
-    String nickname;
+    String[] name;
+    String[] nickname;
+    int index=0;
     public User(String name, String nickname){
-        this.name=name;
-        this.nickname=nickname;
+        this.name[index]=name;
+        this.nickname[index]=nickname;
+        this.index++;
     }
-    public void PrintText(String state){
-        if(state=="Enter"){
-            System.out.println(nickname+"님이 들어왔습니다.");
-        }else{
-            System.out.println(nickname+"님이 나갔습니다.");
+    public void changeNickname(String name, String nickname){
+        for(int i=0; i<name.length(); i++){
+            if(name==this.name[i]){
+                this.nickname[i]=nickname;
+                break;
+            }
         }
     }
 }
